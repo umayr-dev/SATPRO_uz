@@ -453,28 +453,6 @@
             DARSGA BEPUL QATNASHISH
           </button>
 
-          <!-- Bonus Section -->
-          <div class="bonus-section">
-            <div class="gift-icon">
-              <img
-                src="https://onatilimilliysertifikat.vercel.app/images/gift.webp"
-                srcset="
-                  https://onatilimilliysertifikat.vercel.app/images/gift.webp 1x,
-                  https://onatilimilliysertifikat.vercel.app/images/gift.webp 2x
-                "
-                alt="10 ta BONUS mini darslar"
-                loading="lazy"
-                width="80"
-                height="83"
-                decoding="async"
-              />
-            </div>
-            <div class="bonus-text">
-              Hoziroq Telegram kanalimga o'ting va
-              <strong>10 ta BONUS</strong> mini darsimga ega bo'ling
-            </div>
-          </div>
-
           <!-- Benefits Section -->
           <div class="benefits-title">Vebinarda siz bilan:</div>
 
@@ -523,7 +501,27 @@
               chiqish formulasi o'rganasiz</span
             >
           </div>
-
+          <!-- Bonus Section -->
+          <div class="bonus-section">
+            <div class="gift-icon">
+              <img
+                src="https://onatilimilliysertifikat.vercel.app/images/gift.webp"
+                srcset="
+                  https://onatilimilliysertifikat.vercel.app/images/gift.webp 1x,
+                  https://onatilimilliysertifikat.vercel.app/images/gift.webp 2x
+                "
+                alt="10 ta BONUS mini darslar"
+                loading="lazy"
+                width="80"
+                height="83"
+                decoding="async"
+              />
+            </div>
+            <div class="bonus-text">
+              Hoziroq Telegram kanalimga o'ting va
+              <strong>10 ta BONUS</strong> mini darsimga ega bo'ling
+            </div>
+          </div>
           <!-- Timer Section -->
           <div class="timer-section">
             <button
@@ -531,7 +529,7 @@
               id="timerButton"
               aria-label="Telegram kanaliga o'tish - Bepul webinar qatnashish"
             >
-             DARSGA BEPUL QATNASHISH
+              DARSGA BEPUL QATNASHISH
             </button>
             <div class="timer-text">Qolgan vaqt:</div>
             <div class="timer-display" id="timer">01:00</div>
@@ -565,7 +563,6 @@
         const minutes = Math.floor(timeLeft / 60);
         const seconds = timeLeft % 60;
         const timerDisplay = document.getElementById("timer");
-        const timerButton = document.getElementById("timerButton");
 
         timerDisplay.textContent = `${minutes
           .toString()
@@ -573,8 +570,6 @@
 
         if (timeLeft <= 0) {
           clearInterval(timerInterval);
-          timerButton.disabled = true;
-          timerButton.textContent = "VAQT TUGADI";
           timerDisplay.textContent = "00:00";
         }
 
