@@ -111,24 +111,15 @@
         "script",
         "https://connect.facebook.net/en_US/fbevents.js"
       );
-
-      // Defer Facebook Pixel initialization
-      if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", function () {
-          fbq("init", "1221905073010691");
-          fbq("track", "PageView");
-        });
-      } else {
-        fbq("init", "1221905073010691");
-        fbq("track", "PageView");
-      }
+      fbq("init", "1322052075995384");
+      fbq("track", "PageView");
     </script>
     <noscript
       ><img
         height="1"
         width="1"
         style="display: none"
-        src="https://www.facebook.com/tr?id=1221905073010691&ev=PageView&noscript=1"
+        src="https://www.facebook.com/tr?id=1322052075995384&ev=PageView&noscript=1"
     /></noscript>
     <!-- End Meta Pixel Code -->
 
@@ -175,7 +166,7 @@
         min-height: 100vh;
       }
       .container {
-        max-width: 1200px;
+        max-width: 400px;
         margin: 0 auto;
         background: #fff;
         padding: 0 20px 20px;
@@ -184,32 +175,15 @@
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
       }
       .desktop-layout {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 40px;
-        align-items: start;
-        max-width: 1000px;
-        margin: 0 auto;
+        display: block;
       }
       .left-column,
       .right-column {
-        display: flex;
-        flex-direction: column;
-      }
-
-      .left-column {
-        align-items: center;
-        justify-content: flex-start;
-        overflow: visible;
-        min-height: auto;
+        display: block;
       }
 
       .cta-buttons-desktop {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
-        margin: 30px 0;
-        padding: 20px 0;
+        display: none;
       }
       .cta-button-desktop {
         background: #0066cc;
@@ -234,14 +208,11 @@
         .cta-buttons-desktop {
           display: none;
         }
-        .container {
-          max-width: 400px;
-        }
       }
       @media (min-width: 769px) {
         .cta-button,
         .cta-buttons {
-          display: none;
+          display: block;
         }
         .main-title {
           font-size: 36px;
@@ -286,7 +257,7 @@
         font-size: 16px;
         font-weight: 700;
         cursor: pointer;
-        height: 65px;
+        height: 80px;
         margin: -20px 0 20px;
         will-change: transform;
         transition: transform 0.2s ease;
@@ -304,8 +275,55 @@
         font-size: 16px;
         font-weight: 700;
         cursor: pointer;
-        height: 65px;
+        height: 80px;
         margin: 20px 0;
+      }
+
+      .timer-section {
+        text-align: center;
+        margin: 20px 0;
+        padding: 15px;
+        background: #f8f9fa;
+        border-radius: 10px;
+        border: 2px solid #0066cc;
+      }
+
+      .timer-text {
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 10px;
+      }
+
+      .timer-display {
+        font-size: 24px;
+        font-weight: 900;
+        color: #e74c3c;
+        font-family: "Bebas Neue", cursive;
+      }
+
+      .timer-button {
+        width: 100%;
+        background: #0066cc;
+        color: #fff;
+        padding: 0 15px;
+        border: none;
+        border-radius: 30px;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        height: 80px;
+        margin: 20px 0;
+        transition: background-color 0.3s ease;
+      }
+
+      .timer-button:hover {
+        background: #0052a3;
+      }
+
+      .timer-button:disabled {
+        background: #95a5a6;
+        cursor: not-allowed;
       }
       .date-time {
         display: flex;
@@ -506,13 +524,18 @@
             >
           </div>
 
-          <!-- Second Mobile CTA Button -->
-          <button
-            class="cta-buttons"
-            aria-label="Telegram kanaliga o'tish - Bepul webinar qatnashish"
-          >
-            BEPUL QATNASHISH
-          </button>
+          <!-- Timer Section -->
+          <div class="timer-section">
+            <button
+              class="timer-button"
+              id="timerButton"
+              aria-label="Telegram kanaliga o'tish - Bepul webinar qatnashish"
+            >
+              BEPUL QATNASHISH
+            </button>
+            <div class="timer-text">Qolgan vaqt:</div>
+            <div class="timer-display" id="timer">01:00</div>
+          </div>
         </div>
       </div>
     </div>
@@ -534,14 +557,42 @@
         window.open(telegramUrl, "_blank", "noopener,noreferrer");
       }
 
+      // Timer functionality
+      let timeLeft = 60; // 1 minute in seconds
+      let timerInterval;
+
+      function updateTimer() {
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+        const timerDisplay = document.getElementById("timer");
+        const timerButton = document.getElementById("timerButton");
+
+        timerDisplay.textContent = `${minutes
+          .toString()
+          .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval);
+          timerButton.disabled = true;
+          timerButton.textContent = "VAQT TUGADI";
+          timerDisplay.textContent = "00:00";
+        }
+
+        timeLeft--;
+      }
+
       // Add event listeners efficiently
       document.addEventListener("DOMContentLoaded", function () {
         const buttons = document.querySelectorAll(
-          ".cta-button, .cta-buttons, .cta-button-desktop"
+          ".cta-button, .cta-buttons, .cta-button-desktop, .timer-button"
         );
         buttons.forEach((button) => {
           button.addEventListener("click", openTelegramChannel);
         });
+
+        // Start timer
+        timerInterval = setInterval(updateTimer, 1000);
+        updateTimer(); // Initial call
 
         // Register service worker for caching
         if ("serviceWorker" in navigator) {
