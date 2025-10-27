@@ -220,7 +220,7 @@
         text-align: center;
         width: 320px;
         height: 300px;
-        margin: 30px auto;
+        margin: 30px auto -70px;
         padding: 0;
         border-radius: 8px;
         background-size: contain;
@@ -246,7 +246,7 @@
         font-weight: 700;
         cursor: pointer;
         height: 80px;
-        margin: -70px 0 30px;
+        margin: 20px 0 30px;
         will-change: transform;
         transition: transform 0.2s ease;
       }
@@ -273,7 +273,7 @@
         padding: 15px;
         background: #f8f9fa;
         border-radius: 10px;
-        border: 2px solid #0066cc;
+        /* border: 2px solid #0066cc; */
       }
 
       .timer-text {
@@ -326,10 +326,16 @@
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       }
       .date,
-      .time {
+      .time,
+      .free-label {
         font-size: 16px;
         font-weight: 700;
         color: #333;
+      }
+      .free-label {
+        color: #0066cc;
+        font-weight: 900;
+        font-size: 20px;
       }
       .bonus-section {
         background: #fff;
@@ -429,6 +435,7 @@
       <!-- Date and Time -->
       <div class="date-time">
         <div class="date">5-6-Noyabr</div>
+        <div class="free-label">Bepul</div>
         <div class="time">20:30</div>
       </div>
 
@@ -463,7 +470,7 @@
             </button>
           </div>
         </div>
-
+        
         <!-- Right Column -->
         <div class="right-column">
           <!-- Mobile CTA Button -->
@@ -473,7 +480,12 @@
           >
             DARSGA BEPUL QATNASHISH
           </button>
+          <div class="timer-section">
 
+            <div class="timer-text">Qolgan vaqt:</div>
+            <div class="timer-display" id="timer">01:00</div>
+          </div>
+        </div>
           <!-- Benefits Section -->
           <div class="benefits-title">Vebinarda siz bilan:</div>
 
@@ -552,8 +564,8 @@
             >
               DARSGA BEPUL QATNASHISH
             </button>
-            <div class="timer-text">Qolgan vaqt:</div>
-            <div class="timer-display" id="timer">01:00</div>
+            <!-- <div class="timer-text">Qolgan vaqt:</div> -->
+            <!-- <div class="timer-display" id="timer">01:00</div> -->
           </div>
         </div>
       </div>
