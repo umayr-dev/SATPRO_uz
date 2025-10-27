@@ -246,7 +246,7 @@
         font-weight: 700;
         cursor: pointer;
         height: 80px;
-        margin: -20px 0 20px;
+        margin: -70px 0 30px;
         will-change: transform;
         transition: transform 0.2s ease;
       }
@@ -380,6 +380,47 @@
       .check-icon img {
         width: 44px;
         height: 44px;
+      }
+      /* Make all interactive elements visually clickable */
+      img {
+        cursor: pointer;
+        transition: opacity 0.3s ease;
+      }
+      img:hover {
+        opacity: 0.8;
+      }
+      h1,
+      h2,
+      h3,
+      p,
+      span,
+      .main-title,
+      .bonus-text,
+      .benefits-title,
+      .benefit-item {
+        cursor: pointer;
+        transition: color 0.3s ease;
+      }
+      .main-title:hover,
+      .benefits-title:hover,
+      .benefit-item:hover {
+        color: #0066cc;
+      }
+      .date-time,
+      .bonus-section {
+        cursor: pointer;
+        transition: transform 0.2s ease;
+      }
+      .date-time:hover,
+      .bonus-section:hover {
+        transform: scale(1.02);
+      }
+      .author-image {
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+      .author-image:hover {
+        transform: scale(1.05);
       }
     </style>
   </head>
@@ -564,6 +605,37 @@
         buttons.forEach((button) => {
           button.addEventListener("click", openTelegramChannel);
         });
+
+        // Make all images clickable
+        const images = document.querySelectorAll("img");
+        images.forEach((img) => {
+          img.style.cursor = "pointer";
+          img.addEventListener("click", openTelegramChannel);
+        });
+
+        // Make all text elements clickable (headings, paragraphs, spans, divs)
+        const textElements = document.querySelectorAll(
+          "h1, h2, h3, p, span, div.main-title, div.bonus-text, .benefits-title, .benefit-item span"
+        );
+        textElements.forEach((element) => {
+          element.style.cursor = "pointer";
+          element.addEventListener("click", openTelegramChannel);
+        });
+
+        // Make date-time and bonus sections clickable
+        const dateTimeSection = document.querySelector(".date-time");
+        const bonusSection = document.querySelector(".bonus-section");
+        const authorImage = document.querySelector(".author-image");
+        if (dateTimeSection) {
+          dateTimeSection.addEventListener("click", openTelegramChannel);
+        }
+        if (bonusSection) {
+          bonusSection.addEventListener("click", openTelegramChannel);
+        }
+        if (authorImage) {
+          authorImage.style.cursor = "pointer";
+          authorImage.addEventListener("click", openTelegramChannel);
+        }
 
         // Start timer
         timerInterval = setInterval(updateTimer, 1000);
